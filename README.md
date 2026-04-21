@@ -1,4 +1,6 @@
 # ⚡ CMOS Inverter Design & Simulation — 180nm Technology Node
+ <img width="938" height="620" alt="Pilotrouter-gif" src="https://github.com/user-attachments/assets/4c7faf2e-8802-47e7-b8a8-22c37d06b6e4" />
+
 
 <div align="center">
 
