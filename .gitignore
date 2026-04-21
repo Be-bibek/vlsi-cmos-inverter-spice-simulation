@@ -1,0 +1,12 @@
+# Simulation output (generated files — do not commit)
+simulation_output/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor / OS artefacts
+.DS_Store
+*.swp
+*~

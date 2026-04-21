@@ -1,0 +1,253 @@
+* ============================================================
+*  180nm CMOS Technology SPICE Models (BSIM3v3)
+*  Based on publicly available 180nm PDK parameters
+*  VDD = 1.8 V, Tox = 4 nm
+* ============================================================
+
+* ----------------------------------------------------------
+*  NMOS Model — BSIM3v3
+* ----------------------------------------------------------
+.MODEL NMOS_180nm NMOS (
++  LEVEL   = 7
++  VERSION = 3.1
+
+*  Process Parameters
++  TOX     = 4.0e-9       $ Gate oxide thickness (4 nm)
++  XJ      = 1.5e-7       $ Junction depth
++  NCH     = 2.3549e17    $ Channel doping
++  NSUB    = 1.7e17       $ Substrate doping
+
+*  Threshold Voltage
++  VTH0    = 0.5          $ Threshold voltage at zero bias (V)
++  K1      = 0.5613       $ First-order body effect coefficient
++  K2      = 1.078e-2     $ Second-order body effect coefficient
++  K3      = 1.0e-3       $ Narrow-width effect coefficient
++  K3B     = 0            $ Narrow-width body effect
++  W0      = 2.5e-6       $ Narrow-width parameter
++  NLX     = 1.74e-7      $ Lateral non-uniform doping
+
+*  Channel Length Modulation
++  DVT0W   = 0            $ Short-channel effect coefficient 0 (wide W)
++  DVT1W   = 5.3e6        $ Short-channel effect coefficient 1 (wide W)
++  DVT2W   = -0.032       $ Short-channel effect coefficient 2 (wide W)
++  DVT0    = 1.3          $ Short-channel effect coefficient 0
++  DVT1    = 0.41         $ Short-channel effect coefficient 1
++  DVT2    = -0.108       $ Short-channel effect coefficient 2
+
+*  Mobility
++  U0      = 270.0        $ Low-field mobility (cm²/V·s) for electrons
++  UA      = 2.25e-9      $ First-order mobility degradation (m/V)
++  UB      = 5.87e-19     $ Second-order mobility degradation (m²/V²)
++  UC      = -4.65e-11    $ Body bias mobility degradation (1/V)
+
+*  Velocity Saturation
++  VSAT    = 9.5e4        $ Saturation velocity (m/s)
++  A0      = 2.14         $ Channel length factor
++  AGS     = 0.15         $ Gate bias factor for Abulk
++  B0      = -1.0e-8      $ Width offset for Abulk
++  B1      = 0.0          $ Width offset for Abulk
++  KETA    = -0.047       $ Body bias coefficient for Abulk
+
+*  DIBL / CLM
++  A1      = 0.0          $ First non-saturation factor
++  A2      = 1.0          $ Second non-saturation factor
++  RDSW    = 150          $ Source-drain resistance (Ω·µm)
++  PRWG    = 0.0          $ Gate-bias effect on RDSW
++  PRWB    = 0.0          $ Body-bias effect on RDSW
++  WR      = 1.0          $ Width offset for RDSW
++  WINT    = 0.0          $ Width offset (effective W shrink)
++  LINT    = 1.7e-8       $ Length offset (effective L shrink)
+
+*  Subthreshold Slope
++  VOFF    = -0.098       $ Offset voltage for subthreshold
++  NFACTOR = 1.10         $ Subthreshold swing factor
++  CIT     = 0.0          $ Interface state capacitance
++  CDSC    = 2.4e-4       $ Drain/Source to channel capacitance
++  CDSCD   = 0.0          $ Drain-bias sensitivity of CDSC
++  CDSCB   = 0.0          $ Body-bias sensitivity of CDSC
+
++  ETA0    = 0.22         $ Subthreshold DIBL coefficient
++  ETAB    = -0.062       $ Body-bias DIBL coefficient
++  DSUB    = 0.8          $ DIBL coefficient exponent
+
+*  Output Resistance / PCLM
++  PCLM    = 0.75         $ Channel length modulation parameter
++  PDIBLC1 = 0.1          $ DIBL correction 1
++  PDIBLC2 = 0.01         $ DIBL correction 2
++  PDIBLCB = -0.15        $ Body-bias sensitivity of DIBL
++  DROUT   = 0.81         $ L-dependence of DIBL correction
++  PSCBE1  = 8.14e8       $ Substrate current body effect 1
++  PSCBE2  = 1.0e-5       $ Substrate current body effect 2
++  PVAG    = 0.0          $ Gate-bias dependence of Early voltage
+
+*  Capacitances
++  DELTA   = 0.01         $ Effective Vds smoothing
++  RSH     = 8.0          $ Sheet resistance (Ω/sq)
++  MOBMOD  = 1            $ Mobility model selector
++  PRT     = 0.0          $ Temperature coefficient of RDSW
++  UTE     = -1.5         $ Mobility temperature exponent
++  KT1     = -0.11        $ Temperature effect on Vth
++  KT1L    = 0.0          $ Channel-length dependence of KT1
++  KT2     = 0.022        $ Body-bias coefficient of Vth temperature
++  UA1     = 4.31e-9      $ Temperature coefficient of UA
++  UB1     = -7.61e-18    $ Temperature coefficient of UB
++  UC1     = -5.6e-11     $ Temperature coefficient of UC
++  AT      = 3.3e4        $ Temperature coefficient of VSAT
+
++  WL      = 0.0          $ Coefficient of L dependence of width offset
++  WLN     = 1.0          $ Power of L in WL term
++  WW      = 0.0          $ Coefficient of W dependence of width offset
++  WWN     = 1.0          $ Power of W in WW term
++  WWL     = 0.0          $ Coefficient of W and L dependence
++  LL      = 0.0          $ Coefficient of L dependence of length offset
++  LLN     = 1.0          $ Power of L in LL term
++  LW      = 0.0          $ Coefficient of W dependence of length offset
++  LWN     = 1.0          $ Power of W in LW term
++  LWL     = 0.0          $ Coefficient of W and L dependence
+
+*  Intrinsic capacitances
++  CAPMOD  = 2            $ Capacitance model selector
++  XPART   = 0.5          $ Charge partition model
++  CGD0    = 6.86e-10     $ Gate-drain overlap capacitance (F/m)
++  CGS0    = 6.86e-10     $ Gate-source overlap capacitance (F/m)
++  CGB0    = 2.81e-10     $ Gate-bulk overlap capacitance (F/m)
++  CJ      = 1.08e-3      $ Zero-bias junction capacitance (F/m²)
++  PB      = 0.9          $ Built-in junction potential (V)
++  MJ      = 0.37         $ Grading coefficient of junction
++  CJSW    = 3.42e-10     $ Sidewall junction capacitance (F/m)
++  PBSW    = 0.99         $ Sidewall junction built-in potential (V)
++  MJSW    = 0.14         $ Sidewall grading coefficient
++  CJSWG   = 1.64e-10     $ Gate-edge sidewall capacitance (F/m)
++  PBSWG   = 0.9          $ Gate-edge sidewall built-in potential (V)
++  MJSWG   = 0.37         $ Gate-edge sidewall grading coefficient
++  CF      = 0.0          $ Fringing field capacitance (F/m)
++  PVTH0   = 6.0e-3       $ W dependence of VTH0
++  PRDSW   = 3.0          $ W and L dependence of RDSW
++  PK2     = 2.5e-3       $ W dependence of K2
++  WKETA   = -2.0e-2      $ W dependence of KETA
++  LKETA   = -2.0e-2      $ L dependence of KETA
++  TNOM    = 27           $ Nominal temperature (°C)
+)
+
+* ----------------------------------------------------------
+*  PMOS Model — BSIM3v3
+* ----------------------------------------------------------
+.MODEL PMOS_180nm PMOS (
++  LEVEL   = 7
++  VERSION = 3.1
+
+*  Process Parameters
++  TOX     = 4.0e-9       $ Gate oxide thickness (4 nm)
++  XJ      = 1.5e-7       $ Junction depth
++  NCH     = 4.1589e17    $ Channel doping
++  NSUB    = 7.0e16       $ Substrate doping
+
+*  Threshold Voltage
++  VTH0    = -0.5         $ Threshold voltage at zero bias (V)
++  K1      = 0.5560       $ First-order body effect coefficient
++  K2      = 0.0           $ Second-order body effect
++  K3      = 0.0           $ Narrow-width effect
++  K3B     = 0.0
++  W0      = 2.5e-6
++  NLX     = 1.74e-7
+
+*  Channel Length Modulation
++  DVT0    = 2.2          $ Short-channel effect coefficient 0
++  DVT1    = 0.7          $ Short-channel effect coefficient 1
++  DVT2    = -0.033       $ Short-channel effect coefficient 2
++  DVT0W   = 0.0
++  DVT1W   = 5.3e6
++  DVT2W   = -0.032
+
+*  Mobility
++  U0      = 95.0         $ Low-field mobility (cm²/V·s) for holes
++  UA      = 1.51e-9      $ First-order mobility degradation
++  UB      = 1.46e-18     $ Second-order mobility degradation
++  UC      = -4.69e-11    $ Body bias mobility degradation
+
+*  Velocity Saturation
++  VSAT    = 1.05e5       $ Saturation velocity (m/s)
++  A0      = 1.1          $ Channel length factor
++  AGS     = 0.17
++  B0      = 3.0e-9
++  B1      = 0.0
++  KETA    = -0.083
+
+*  DIBL / CLM
++  A1      = 0.0
++  A2      = 0.83
++  RDSW    = 214          $ Source-drain resistance (Ω·µm)
++  PRWG    = 0.0
++  PRWB    = 0.0
++  WR      = 1.0
++  WINT    = 0.0
++  LINT    = 1.8e-8
+
+*  Subthreshold Slope
++  VOFF    = -0.052
++  NFACTOR = 0.60
++  CIT     = 0.0
++  CDSC    = 2.4e-4
++  CDSCD   = 0.0
++  CDSCB   = 0.0
++  ETA0    = 7.4e-3
++  ETAB    = -4.0e-3
++  DSUB    = 1.4
+
+*  Output Resistance / PCLM
++  PCLM    = 1.50
++  PDIBLC1 = 0.15
++  PDIBLC2 = 0.02
++  PDIBLCB = -0.15
++  DROUT   = 0.84
++  PSCBE1  = 1.0e10
++  PSCBE2  = 5.0e-10
++  PVAG    = 1.2
+
+*  Capacitances
++  DELTA   = 0.01
++  RSH     = 7.4
++  MOBMOD  = 1
++  PRT     = 0.0
++  UTE     = -1.5
++  KT1     = -0.11
++  KT1L    = 0.0
++  KT2     = 0.022
++  UA1     = 4.31e-9
++  UB1     = -7.61e-18
++  UC1     = -5.6e-11
++  AT      = 3.3e4
+
++  WL      = 0.0
++  WLN     = 1.0
++  WW      = 0.0
++  WWN     = 1.0
++  WWL     = 0.0
++  LL      = 0.0
++  LLN     = 1.0
++  LW      = 0.0
++  LWN     = 1.0
++  LWL     = 0.0
+
++  CAPMOD  = 2
++  XPART   = 0.5
++  CGD0    = 8.63e-10     $ Gate-drain overlap capacitance (F/m)
++  CGS0    = 8.63e-10     $ Gate-source overlap capacitance (F/m)
++  CGB0    = 7.84e-10     $ Gate-bulk overlap capacitance (F/m)
++  CJ      = 1.19e-3
++  PB      = 0.9
++  MJ      = 0.41
++  CJSW    = 2.51e-10
++  PBSW    = 0.99
++  MJSW    = 0.20
++  CJSWG   = 2.2e-10
++  PBSWG   = 0.9
++  MJSWG   = 0.41
++  CF      = 0.0
++  PVTH0   = 1.0e-2
++  PRDSW   = 3.0
++  PK2     = 2.5e-3
++  WKETA   = -2.0e-2
++  LKETA   = -2.0e-2
++  TNOM    = 27           $ Nominal temperature (°C)
+)
